@@ -5,9 +5,13 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import type {Node} from 'react';
 import React, { Component } from 'react'; 
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 import {
   SafeAreaView,
@@ -32,7 +36,7 @@ import {
 export default class App extends Component<Props>
 {
 render() {
-return React.createElement(Text, {style: styles.description}, "Rechercher des pays !");
+return <Text style={styles.description}>Rechercher des pays du monde entier! </Text>;
  }
 
 }
