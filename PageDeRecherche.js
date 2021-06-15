@@ -16,6 +16,7 @@ export default class PageDeRecherche extends Component<Props> {
     this.state = {
       requeteDeRecherche: 'morocco',
       estEnChargement: false,
+      message: ''
     };
   }
 
@@ -27,16 +28,31 @@ export default class PageDeRecherche extends Component<Props> {
   _executerRequete = requete => {
     console.log(requete);
     this.setState({estEnChargement: true});
-  };
+    fetch(requete)
+       .then(reponse => reponse.json())
+       .then(json => this._gererLaReponse(json))
+       .catch(error =>
+         this.setState({
+         estEnChargement: false,
+         message: 'Quelque chose de mauvais s\'est produit' + error
+         })); 
+    };
   _auDemarrageDeLaRecherche = () => {
     const requete = urlPourRequete(this.state.requeteDeRecherche);
     this._executerRequete(requete);
-  };
+     };
+
+   _gererLaReponse = (reponse) => {
+      this.setState({ estEnChargement: false, message: '' });
+      console.log('Nombre de pays trouvés :' + reponse.length);
+       };
+
 
   render() {
     const indicateurDeChargement = this.state.estEnChargement ? (
       <ActivityIndicator size="large" color="0000ff" />
-    ) : null;
+       
+    ) : <Text style={styles.description}>{this.state.message}</Text>;
     return (
       <View style={styles.conteneur}>
         <Text style={styles.description}>Rechercher des pays à explorer !</Text>
