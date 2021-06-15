@@ -15,22 +15,28 @@ export default class PageDeRecherche extends Component<Props> {
     super(props);
     this.state = {
       requeteDeRecherche: 'morocco',
+      estEnChargement: false,
     };
   }
 
   _auChangementDeLaRecherche = event => {
     console.log('_auChangementDeLaRecherche');
     this.setState({requeteDeRecherche: event.nativeEvent.text});
-    console.log(
-      'Current: ' +
-        this.state.requeteDeRecherche +
-        ', Next: ' +
-        event.nativeEvent.text,
-    );
+  };
+
+  _executerRequete = requete => {
+    console.log(requete);
+    this.setState({estEnChargement: true});
+  };
+  _auDemarrageDeLaRecherche = () => {
+    const requete = urlPourRequete(this.state.requeteDeRecherche);
+    this._executerRequete(requete);
   };
 
   render() {
-    console.log('PageDeRecherche.rendu');
+    const indicateurDeChargement = this.state.estEnChargement ? (
+      <ActivityIndicator size="large" color="0000ff" />
+    ) : null;
     return (
       <View style={styles.conteneur}>
         <Text style={styles.description}>Rechercher des pays à explorer !</Text>
@@ -46,9 +52,14 @@ export default class PageDeRecherche extends Component<Props> {
             placeholder="Rechercher par nom de pays"
           />
 
-          <Button onPress={() => {}} color="#48AAEC" title="Démarrer" />
+          <Button
+            onPress={this._auDemarrageDeLaRecherche}
+            color="#48AAEC"
+            title="Démarrer"
+          />
         </View>
         <Image source={require('./Resources/pays.jpg')} style={styles.image} />
+        {indicateurDeChargement}
       </View>
     );
   }
@@ -87,3 +98,6 @@ const styles = StyleSheet.create({
     color: '#48AAEC',
   },
 });
+function urlPourRequete(valeur) {
+  return 'https://restcountries.eu/rest/v2/name/' + valeur;
+}
