@@ -33,13 +33,33 @@ import {
 
 
 
-export default class App extends Component<Props>
+class PageDeRecherche extends Component<Props>
 {
 render() {
 return <Text style={styles.description}>Rechercher des pays du monde entier! </Text>;
  }
 
 }
+
+const Pile = createStackNavigator();
+function MaPile() {
+ return (
+ <Pile.Navigator>
+ <Pile.Screen name="Accueil" component={PageDeRecherche} />
+ </Pile.Navigator>
+ );
+}
+export default class App extends Component<Props> {
+
+render()
+ {
+return (
+<NavigationContainer>
+ <MaPile />
+</NavigationContainer>
+ );
+ }
+} 
 
 
 const styles = StyleSheet.create({
