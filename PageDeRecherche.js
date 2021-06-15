@@ -31,6 +31,7 @@ export default class PageDeRecherche extends Component<Props> {
  title='Démarrer'
  />
 </View> 
+<Image source={require('./Resources/pays.jpg')} style={styles.image}/>
  </View>
  );
  }
@@ -52,6 +53,10 @@ const styles = StyleSheet.create({
  flexDirection: 'row',
  alignItems: 'center',
  alignSelf: 'stretch',
+},
+image: {
+ width: 220,
+ height: 140,
 },
 requeteEntree: {
  height: 36,
