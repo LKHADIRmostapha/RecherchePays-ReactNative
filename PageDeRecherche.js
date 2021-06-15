@@ -23,9 +23,12 @@ _auChangementDeLaRecherche = (event) => {
  console.log('_auChangementDeLaRecherche');
  this.setState({ requeteDeRecherche: event.nativeEvent.text });
  console.log('Current: '+this.state.requeteDeRecherche +', Next: '+event.nativeEvent.text);
-}; 
+ }; 
+
+
 
  render() {
+    console.log('PageDeRecherche.rendu'); 
  return (
 
  <View style={styles.conteneur}>
