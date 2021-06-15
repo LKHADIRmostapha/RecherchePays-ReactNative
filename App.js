@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import React, { Component } from 'react'; 
 import { createStackNavigator } from '@react-navigation/stack';
+import PageDeRecherche from './PageDeRecherche';
 
 
 import {
@@ -31,14 +32,6 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 
-
-class PageDeRecherche extends Component<Props>
-{
-render() {
-return <Text style={styles.description}>Rechercher des pays du monde entier! </Text>;
- }
-
-}
 
 const Pile = createStackNavigator();
 function MaPile() {
