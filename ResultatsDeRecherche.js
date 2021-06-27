@@ -22,9 +22,9 @@ _rendreItem = ({item, index}) => (
  
 );
 
-_itemAppuye = (index) => {
- console.log('Ligne appuyée : '+index);
-}; 
+// _itemAppuye = (index) => {
+//  console.log('Ligne appuyée : '+index);
+// }; 
 
 
 
@@ -63,4 +63,5 @@ const styles = StyleSheet.create({
  padding: 10
  },
 });
+
 
